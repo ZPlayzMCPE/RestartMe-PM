@@ -40,11 +40,11 @@ class RestartMeCommand extends Command{
     }
     /**
      * @param CommandSender $sender
-     * @param string $label
+     * @param string $commandLabel
      * @param string[] $args
      * @return bool
      */
-    public function execute(CommandSender $sender, $label, array $args){
+    public function execute(CommandSender $sender, string $commandLabel, array $args){
         if(!$this->testPermission($sender)){
             return false;
         }
