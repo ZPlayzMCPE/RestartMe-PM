@@ -17,7 +17,7 @@ class SetTimeEvent extends PluginEvent{
      * @param int $oldTime
      * @param int $newTime
      */
-    public function __construct(RestartMe $plugin, $oldTime, $newTime){
+    public function __construct(RestartMe $plugin, int $oldTime, int $newTime){
         parent::__construct($plugin);
         $this->oldTime = (int) $oldTime;
         $this->newTime = (int) $newTime;
@@ -25,13 +25,13 @@ class SetTimeEvent extends PluginEvent{
     /**
      * @return int
      */
-    public function getOldTime(){
+    public function getOldTime(): int{
         return $this->oldTime;
     }
     /**
      * @return int
      */
-    public function getNewTime(){
+    public function getNewTime(): int{
         return $this->newTime;
     }
 }
