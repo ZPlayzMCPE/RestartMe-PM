@@ -1,9 +1,9 @@
 name: RestartMe
 main: restartme\RestartMe
 version: 1.3.0
-api: 1.10.0
+api: [3.0.0-ALPHA9, 3.0.0-ALPHA10]
 load: STARTUP
-author: Gamecrafter
+author: VMPE Development Team
 description: Make sure your server stays up all the time!
 website: https://github.com/NebulaLabs/RestartMe-PM
 permissions:
