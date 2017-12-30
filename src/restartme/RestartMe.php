@@ -37,13 +37,13 @@ class RestartMe extends PluginBase{
     /** 
      * @return int 
      */
-    public function getTime(){
+    public function getTime(): int{
     	return $this->timer;
     }
     /**
      * @return string
      */
-    public function getFormattedTime(){
+    public function getFormattedTime(): string{
         $time = Utils::toArray($this->getTime());
         return $time[0]." hr ".$time[1]." min ".$time[2]." sec";
     }
@@ -139,7 +139,7 @@ class RestartMe extends PluginBase{
     /**
      * @return bool
      */
-    public function isTimerPaused(){
+    public function isTimerPaused(): bool{
         return $this->paused === true;
     }
     /**
@@ -153,7 +153,7 @@ class RestartMe extends PluginBase{
     /**
      * @return string
      */
-    public function getMemoryLimit(){
+    public function getMemoryLimit(): string{
         return strtoupper($this->getConfig()->get("memoryLimit"));
     }
 }
