@@ -13,7 +13,7 @@ class ServerRestartEvent extends PluginEvent{
     /**
      * @param RestartMe $plugin
      */
-    public function __construct(RestartMe $plugin, $mode){
+    public function __construct(RestartMe $plugin, int $mode){
         parent::__construct($plugin);
         $this->mode = (int) $mode;
     }
