@@ -14,20 +14,20 @@ class PauseTimerEvent extends PluginEvent{
      * @param RestartMe $plugin
      * @param bool $value
      */
-    public function __construct(RestartMe $plugin, $value){
+    public function __construct(RestartMe $plugin, bool $value){
         parent::__construct($plugin);
         $this->value = (bool) $value;
     }
     /**
      * @return bool
      */
-    public function getValue(){
+    public function getValue(): bool{
         return $this->value;
     }
     /**
      * @param bool $value
      */
-    public function setValue($value){
+    public function setValue(bool $value){
         $this->value = (bool) $value;
     }
 }
