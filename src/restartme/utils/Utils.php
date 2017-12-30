@@ -8,7 +8,7 @@ class Utils{
      * @param string $toCheck
      * @return int
      */
-    public static function calculateBytes($toCheck){
+    public static function calculateBytes(string $toCheck): int{
         $byteLimit = (int) substr(trim($toCheck), 0, 1);
         switch(strtoupper(substr($toCheck, -1))){
             case "T": //terabyte
@@ -30,7 +30,7 @@ class Utils{
      * @param string $toCheck
      * @return bool
      */
-    public static function isOverloaded($toCheck){
+    public static function isOverloaded(string $toCheck): bool{
         return memory_get_usage(true) > self::calculateBytes($toCheck);
     }
     /**
@@ -39,7 +39,7 @@ class Utils{
      * @return array
      * @throws \InvalidArgumentException
      */
-    public static function toArray($time){
+    public static function toArray(int $time): array{
         if(is_int($time)){
             return [
                 floor($time / 3600), //hour
