@@ -20,13 +20,13 @@ class ServerRestartEvent extends PluginEvent{
     /**
      * @return int
      */
-    public function getMode(){
+    public function getMode(): int{
         return $this->mode;
     }
     /**
      * @param int $mode
      */
-    public function setMode($mode){
+    public function setMode(int $mode){
         $this->mode = (int) $mode;
     }
 }
