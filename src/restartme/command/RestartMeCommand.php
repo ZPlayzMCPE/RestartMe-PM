@@ -44,7 +44,7 @@ class RestartMeCommand extends Command{
      * @param string[] $args
      * @return bool
      */
-    public function execute(CommandSender $sender, $label, array $args){
+    public function execute(CommandSender $sender, string $label, array $args) : bool{
         if(!$this->testPermission($sender)){
             return false;
         }
@@ -57,9 +57,11 @@ class RestartMeCommand extends Command{
                             $time = (int) $args[1];
                             $this->plugin->addTime($time);
                             $sender->sendMessage(TextFormat::GREEN."Added ".$time." to restart timer.");
+                            return true;
                         }
                         else{
                             $sender->sendMessage(TextFormat::RED."Time value must be numeric.");
+                            return true;
                         } 
                     }
                     else{
@@ -82,9 +84,11 @@ class RestartMeCommand extends Command{
                             $time = (int) $args[1];
                             $this->plugin->setTime($time);
                             $sender->sendMessage(TextFormat::GREEN."Set restart timer to ".$time.".");
+                            return true;
                         }
                         else{
                             $sender->sendMessage(TextFormat::RED."Time value must be numeric.");
+                            return true;
                         } 
                     }
                     else{
@@ -95,6 +99,7 @@ class RestartMeCommand extends Command{
                     if($this->plugin->isTimerPaused()){
                         $this->plugin->setPaused(false);
                         $sender->sendMessage(TextFormat::YELLOW."Timer is no longer paused.");
+                        return true;
                     }
                     else{
                         $sender->sendMessage(TextFormat::RED."Timer is not paused.");
@@ -103,6 +108,7 @@ class RestartMeCommand extends Command{
                 case "stop":
                     if($this->plugin->isTimerPaused()){
                         $sender->sendMessage(TextFormat::RED."Timer is already paused.");
+                        return true;
                     }
                     else{
                         $this->plugin->setPaused(true);
@@ -116,9 +122,11 @@ class RestartMeCommand extends Command{
                             $time = (int) $args[1];
                             $this->plugin->subtractTime($time);
                             $sender->sendMessage(TextFormat::GREEN."Subtracted ".$time." from restart timer.");
+                            return true;
                         }
                         else{
                             $sender->sendMessage(TextFormat::RED."Time value must be numeric.");
+                            return true;
                         } 
                     }
                     else{
