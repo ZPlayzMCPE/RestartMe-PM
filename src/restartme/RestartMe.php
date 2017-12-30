@@ -50,14 +50,14 @@ class RestartMe extends PluginBase{
     /** 
      * @param int $seconds 
      */
-    public function setTime($seconds){
+    public function setTime(int $seconds){
         $this->getServer()->getPluginManager()->callEvent(new SetTimeEvent($this, $this->getTime(), (int) $seconds));
     	$this->timer = (int) $seconds;
     }
     /** 
      * @param int $seconds 
      */
-    public function addTime($seconds){
+    public function addTime(int $seconds){
     	if(is_numeric($seconds)){
             $this->setTime($this->getTime() + $seconds);
         }
@@ -65,7 +65,7 @@ class RestartMe extends PluginBase{
     /** 
      * @param int $seconds 
      */
-    public function subtractTime($seconds){
+    public function subtractTime(int $seconds){
     	if(is_numeric($seconds)){
             $this->setTime($this->getTime() - $seconds);
         }
@@ -74,7 +74,7 @@ class RestartMe extends PluginBase{
      * @param string $message
      * @param string $messageType
      */
-    public function broadcastTime($message, $messageType){
+    public function broadcastTime(string $message, string $messageType){
         $time = Utils::toArray($this->getTime());
         $outMessage = str_replace(
             [
@@ -96,15 +96,18 @@ class RestartMe extends PluginBase{
         switch(strtolower($messageType)){
             case "chat":
                 $this->getServer()->broadcastMessage($outMessage);
+                return true;
                 break;
             case "popup":
                 foreach($this->getServer()->getOnlinePlayers() as $player){
                     $player->sendPopup($outMessage);
+                    return true;
                 }
                 break;
             case "tip":
                 foreach($this->getServer()->getOnlinePlayers() as $player){
                     $player->sendTip($outMessage);
+                    return true;
                 }
                 break;
         }
@@ -112,7 +115,7 @@ class RestartMe extends PluginBase{
     /** 
      * @param int $mode 
      */
-    public function initiateRestart($mode){
+    public function initiateRestart(int $mode){
         $event = new ServerRestartEvent(($this), $mode);
         $this->getServer()->getPluginManager()->callEvent($event);
         switch($event->getMode()){
@@ -121,12 +124,14 @@ class RestartMe extends PluginBase{
                     $player->kick($this->getConfig()->get("quitMessage"), false);
                 }
                 $this->getServer()->getLogger()->info($this->getConfig()->get("quitMessage"));
+                return true;
                 break;
             case self::OVERLOADED:
                 foreach($this->getServer()->getOnlinePlayers() as $player){
                     $player->kick($this->getConfig()->get("overloadQuitMessage"), false);
                 }
                 $this->getServer()->getLogger()->info($this->getConfig()->get("overloadQuitMessage"));
+                return true;
                 break;
         }
         $this->getServer()->shutdown();
@@ -140,7 +145,7 @@ class RestartMe extends PluginBase{
     /**
      * @param bool $value
      */
-    public function setPaused($value = true){
+    public function setPaused(bool $value = true){
         $event = new PauseTimerEvent($this, $value);
         $this->getServer()->getPluginManager()->callEvent($event);
         $this->paused = $event->getValue();
